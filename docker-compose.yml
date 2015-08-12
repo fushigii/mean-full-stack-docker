@@ -1,0 +1,16 @@
+web:
+  build: .
+  links:
+   - db
+  ports:
+   - "3000:3000"
+   - "35729:35729"
+  volumes:
+   - ./app:/home/mean/app
+  environment: 
+   NODE_ENV: development
+db:
+  build: ./mongodb/
+  command: bash -c  "mongod --auth --config /etc/mongodb/mongodb.conf"
+  ports: 
+   - "27017:27017"
